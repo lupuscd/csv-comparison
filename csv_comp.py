@@ -7,7 +7,7 @@ filenames = [ f for f in os.listdir(csv_path) if f.endswith('.csv')]
 weight_list = ['Weight %', 'Weight (%)', 'Weight', '% of net assets', 'Weighting']
 name_list = ['Security', ' Security Description', 'Holding', 'Name', 'Security Name']
 
-dataframes = []
+dataframeslist = []
 
 for f in filenames:
     rpath = os.path.join(path, f)
@@ -16,14 +16,13 @@ for f in filenames:
     existing_weights = [wght for wght in weight_list if wght in data.columns]
     str_names = ''.join(existing_names)
     str_weights = ''.join(existing_weights)
-    rdata = data[[str_names, str_weights]]
-    rdata.columns = rdata.iloc[0]
-    rdata.drop(0)
-    dataframes.append(rdata)
+    data = data.loc[:, [str_names, str_weights]]
+    #rdata.columns = rdata.iloc[0]
+    #rdata.drop(0)
+    for index, row in data.iterrows():
+        dataframeslist.append(list(row))    
 
-#colmns = ['Name', 'Weight (%)']
-fdata = pd.concat(dataframes, ignore_index=True)
-
+fdata = pd.DataFrame(dataframeslist)
 #data['Name'] = data['Name'].str.lower()
 fdata.to_csv('/Users/invictus/Programing/Projects/csv comparison/data/combined_data.csv',
  index = False)
