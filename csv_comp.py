@@ -17,12 +17,12 @@ for f in filenames:
     str_names = ''.join(existing_names)
     str_weights = ''.join(existing_weights)
     data = data.loc[:, [str_names, str_weights]]
-    #rdata.columns = rdata.iloc[0]
-    #rdata.drop(0)
     for index, row in data.iterrows():
         dataframeslist.append(list(row))    
 
-fdata = pd.DataFrame(dataframeslist)
-#data['Name'] = data['Name'].str.lower()
+columns = ['Name', 'Weight (%)']
+fdata = pd.DataFrame(dataframeslist, columns=columns)
+fdata = fdata.dropna()
+fdata['Name'] = fdata['Name'].str.upper()
 fdata.to_csv('/Users/invictus/Programing/Projects/csv comparison/data/combined_data.csv',
  index = False)
