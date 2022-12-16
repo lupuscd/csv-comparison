@@ -1,6 +1,9 @@
 import pandas as pd
 import os
 
+# Read csv files from folder and combine the name and weight columns 
+# from each into a new csv file
+
 path = '/Users/invictus/Programing/Projects/csv comparison/new csv/'
 csv_path = '/Users/invictus/Programing/Projects/csv comparison/etf holdings/'
 filenames = [ f for f in os.listdir(csv_path) if f.endswith('.csv')]
