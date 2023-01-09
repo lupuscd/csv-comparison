@@ -1,5 +1,7 @@
 import pandas as pd
+from csv_comp import csv_comp
 
+csv_comp()
 # Group and merge identical items in the combined_data csv file
 
 data = pd.read_csv('/Users/invictus/Programing/Projects/csv comparison/data/combined_data.csv')
